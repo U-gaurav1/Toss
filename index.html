@@ -87,7 +87,7 @@
       // Delay result until animation ends
       setTimeout(() => {
         // Probability: 3/4 Heads, 1/4 Tails
-        let toss = Math.random() < 0.75 ? "HEADS" : "TAILS";
+        let toss = Math.random() < 0.50 ? "HEADS" : "TAILS";
 
         coin.textContent = toss;
         result.textContent = "You got " + toss + "!";
