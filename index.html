@@ -116,8 +116,8 @@
   }
 
   function tossCoin() {
-    // Decide outcome: 75% heads, 25% tails
-    const isHeads = Math.random() < 0.75;
+    // Fair 50–50 chance
+    const isHeads = Math.random() < 0.5;
 
     // Random spins (3–6 full rotations)
     const spins = Math.floor(Math.random() * 4) + 3;
