@@ -110,28 +110,29 @@
   const statsEl = document.getElementById("stats");
 
   let heads = 0, tails = 0, total = 0;
-  let currentRotation = 0;
 
   function updateStats() {
     statsEl.textContent = `Total: ${total} | Heads: ${heads} | Tails: ${tails}`;
   }
 
   function tossCoin() {
-    // Probability: 3/4 Heads, 1/4 Tails
-    const outcome = Math.random() < 0.75 ? "HEADS" : "TAILS";
+    // Decide outcome: 75% heads, 25% tails
+    const isHeads = Math.random() < 0.75;
 
-    // Random spins for realism
-    const spins = Math.floor(Math.random() * 3) + 3; // 3–5 full spins
-    currentRotation += spins * 360 + (outcome === "TAILS" ? 180 : 0);
+    // Random spins (3–6 full rotations)
+    const spins = Math.floor(Math.random() * 4) + 3;
+    const finalAngle = isHeads ? spins * 360 : spins * 360 + 180;
 
-    coin.style.transform = `rotateY(${currentRotation}deg)`;
+    // Animate coin
+    coin.style.transform = `rotateY(${finalAngle}deg)`;
 
     setTimeout(() => {
+      const outcome = isHeads ? "HEADS" : "TAILS";
       resultEl.textContent = `You got ${outcome}!`;
       total++;
-      if (outcome === "HEADS") heads++; else tails++;
+      if (isHeads) heads++; else tails++;
       updateStats();
-    }, 1800); // after animation
+    }, 1900);
   }
 
   coin.addEventListener("click", tossCoin);
